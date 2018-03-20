@@ -30,7 +30,7 @@ function init(){
 
   generateDiamond()
 
-  
+
   // creer une nouvelle balise div et l'assigner à tail
   tail = document.createElement('div')
 
@@ -51,7 +51,8 @@ function init(){
   document.querySelector('body').appendChild(score)
 
   //lancer la partie
-  // game()
+  game()
+
 }
 function generateDiamond() {
   // creer une nouvelle balise div et l'assigner à diamond
@@ -77,3 +78,47 @@ function displaySnake(){
   snake.style.top = posY + "px"
   snake.style.left = posX + "px"
 }
+
+function game(){
+  let gamePlay = setInterval(function(){
+    // deplacer le snake en fonction de la direction
+    if (dir==0){
+      posY -= 10
+    }
+    else if (dir==1){
+      posX += 10
+    }
+    else if (dir==2){
+      posY += 10
+    }
+    else {
+      posX -= 10
+    }
+    displaySnake()
+
+    // gérer la queue du snake
+    // manageTail()
+
+    // gérer la position de la tete du snake par rapport au diamant.
+    //manageDiamond()
+
+  },40);
+}
+
+window.addEventListener(
+  'keypress',
+  function(e){
+    if (e.keyCode==122){
+      dir=0
+    }
+    else if (e.keyCode==100){
+      dir=1
+    }
+    else if (e.keyCode==115){
+      dir=2
+    }
+    else if (e.keyCode==113){
+      dir=3
+    }
+  }
+)
