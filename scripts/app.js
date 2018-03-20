@@ -103,7 +103,7 @@ function game(){
     manageTail(oldPosX, oldPosY)
 
     // gérer la position de la tete du snake par rapport au diamant.
-    //manageDiamond()
+    manageDiamond()
 
   },40);
 }
@@ -152,4 +152,18 @@ function manageTail(oldPosX, oldPosY){
     // on enleve la premiere div dans tail
 
     // on enleve le premier élement dans le tableau tabTail avec .shift()
+}
+
+function manageDiamond(){
+  // si la tete du snake est sur le diamant
+  if (posX == diamondPosX && posY == diamondPosY){
+    // supprimer le diamant
+    document.querySelector("body").removeChild(diamond)
+    // augmenter penality de la valeur du diamant.
+    penality += diamondPenality
+    scoreValue += diamondPenality
+    score.innerHTML = scoreValue
+    // générer un nouveau diamant
+    generateDiamond()
+  }
 }
