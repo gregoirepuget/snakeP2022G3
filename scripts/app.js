@@ -4,7 +4,7 @@ init()
 function init(){
 
   //initialiser penality
-  penality = 6
+  penality = 20
   // initialiser scoreValue à 0;
   scoreValue = 0
   // initialiser la direction de départ dir.
@@ -81,6 +81,9 @@ function displaySnake(){
 
 function game(){
   let gamePlay = setInterval(function(){
+
+  let oldPosX = posX
+  let oldPosY = posY
     // deplacer le snake en fonction de la direction
     if (dir==0){
       posY -= 10
@@ -97,7 +100,7 @@ function game(){
     displaySnake()
 
     // gérer la queue du snake
-    manageTail()
+    manageTail(oldPosX, oldPosY)
 
     // gérer la position de la tete du snake par rapport au diamant.
     //manageDiamond()
@@ -124,8 +127,29 @@ window.addEventListener(
 )
 
 
-function manageTail(){
+function manageTail(oldPosX, oldPosY){
+  // creer un nouvelle div et la stocker dans une nouvelle variable
+  let tailElement = document.createElement('div')
+  // récupérer l'ancienne posX et posY de la tete et l'assigner à cette div.
+  tailElement.style.top = oldPosY + 'px'
+  tailElement.style.left = oldPosX + 'px'
+  // afficher cette div dans tail
+  tail.appendChild(tailElement)
 
+  // ajouter la nouvelle position à la fin du tableau JS tabTail
+  tailTab.push(new Array(oldPosX, oldPosY))
 
+  // si penality est supérieur à 0
+  if (penality > 0) {
+    penality--
+  }
+  else{
+    tail.removeChild(document.querySelector('#tail div:first-child'))
+    tailTab.shift();
+  }
+    // on enleve 1 à penality
+  // sinon
+    // on enleve la premiere div dans tail
 
+    // on enleve le premier élement dans le tableau tabTail avec .shift()
 }
