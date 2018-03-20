@@ -97,7 +97,7 @@ function game(){
     displaySnake()
 
     // gérer la queue du snake
-    // manageTail()
+    manageTail()
 
     // gérer la position de la tete du snake par rapport au diamant.
     //manageDiamond()
@@ -122,3 +122,10 @@ window.addEventListener(
     }
   }
 )
+
+
+function manageTail(){
+
+
+
+}
